@@ -1,5 +1,4 @@
-import React from 'react';
-import {fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
 
@@ -60,9 +59,6 @@ const useStyles = makeStyles((theme) => ({
     },
     grow: {
         flexGrow: 1,
-      },
-      menuButton: {
-        marginRight: theme.spacing(2),
       },
       title: {
         display: 'none',

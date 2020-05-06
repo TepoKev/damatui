@@ -13,17 +13,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
-const SideBar = () => {
+const SideBar = ({open, toggleDrawer}) => {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(true);
-
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
     return (
         <Drawer
             className={classes.drawer}
@@ -34,9 +26,8 @@ const SideBar = () => {
                 paper: classes.drawerPaper,
             }}
         >
-            <div className={classes.drawerHeader}>  
-            DAMATUI  
-                <IconButton onClick={handleDrawerClose}>
+            <div className={classes.drawerHeader}>
+                <IconButton onClick={toggleDrawer}>
                     {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                 </IconButton>
             </div>

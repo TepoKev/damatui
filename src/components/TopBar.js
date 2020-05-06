@@ -14,19 +14,11 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
-const TopBar = () => {
+const TopBar = ({open, toggleDrawer}) => {
     const classes = useStyles();
     /**
      * si no se quiere cargar el sidebar de entrada, solo poner false al useState
      */
-    const [open, setOpen] = React.useState(true);
-
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -119,14 +111,14 @@ const TopBar = () => {
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
-                        onClick={handleDrawerOpen}
+                        onClick={toggleDrawer}
                         edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
                     >
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Persistent drawer
+                        Damatui
                 </Typography>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
