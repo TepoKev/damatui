@@ -7,15 +7,30 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import SideBar from '../components/SideBar';
 import TopBar from '../components/TopBar';
 import Footer from '../components/Footer';
+import routes from '../routes/routes';
+
 const drawerWidth = 240;
+
 export default function Admin() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-
   const toggleDrawer = () => {
     setOpen(!open);
   }
-
+  var arrayRouter = [];
+  routes.forEach((prop) => {
+    arrayRouter.push(
+      prop.collapses.map((route, key) => {
+        return (
+          <Route
+            path={prop.layout + prop.path + route.path}
+            component={route.component}
+            key={key}
+          />
+        );
+      })
+    );
+  });
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -27,10 +42,10 @@ export default function Admin() {
         })}
       >
         <div className={classes.drawerHeader} />
-        {/* Aqui va el switch con las rutas y aca se colocaran las paginas */}
+        {/* Aqui va el switch con las rutas y aca se colocaran las paginas (Aclople de componentes al layout)*/}
         <Switch>
           <Route path="/admin/dashboard" component={Dashboard} />
-          {/* Aca van las rutas del array */}
+          {arrayRouter}
         </Switch>
         <Footer />
       </main>
