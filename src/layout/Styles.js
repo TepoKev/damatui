@@ -78,10 +78,10 @@ const useStyles = makeStyles((theme) => ({
           display: 'none',
         },
       },footer: {
-        position: 'absolute', 
-        left: '50%',    
+        position: 'absolute',   
         bottom:'10px',
-        transform: 'translate(-50%, -50%)'
+        textAlign:'center',
+        width:'-moz-available'
     },
 }));
 
