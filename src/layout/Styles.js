@@ -77,11 +77,15 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
           display: 'none',
         },
-      },footer: {
+      },
+      headerfooter:{
+          display:'flex',
+          alignItems:'center',
+          justifyContent:'center',
+      },
+      footer: {
         position: 'absolute',   
         bottom:'10px',
-        textAlign:'center',
-        width:'-moz-available'
     },
 }));
 
