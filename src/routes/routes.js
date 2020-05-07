@@ -26,6 +26,7 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import BrandingWatermarkIcon from '@material-ui/icons/BrandingWatermark';
 import PeopleIcon from '@material-ui/icons/People';
+import FolderOpenIcon from '@material-ui/icons/FolderOpen';
 
 //En base a este arreglo de objetos se generaran las rutas
 const routes = [
@@ -172,7 +173,7 @@ const routes = [
             {
                 path: "/registro",
                 name: "Registro y Lista",
-                icon: "fas fa-box-open",
+                icon: <FolderOpenIcon />,
                 component: RegistroMarca
             }
         ]
