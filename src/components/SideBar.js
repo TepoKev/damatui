@@ -21,6 +21,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const SideBar = ({ open, toggleDrawer }) => {
+    console.log("Sidebar "+open);
     const [expanded, setExpanded] = React.useState(false);
     const classes = useStyles();
     const classesExp = useStylesExp();
