@@ -77,7 +77,12 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
           display: 'none',
         },
-      },
+      },footer: {
+        position: 'absolute', 
+        left: '50%',    
+        bottom:'10px',
+        transform: 'translate(-50%, -50%)'
+    },
 }));
 
 export default useStyles;
