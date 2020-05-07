@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Footer = () => (
-    <footer style={{textAlign : "center"}}>
+    <footer>
         <span>Copyright &copy; Damatui 2020</span>
     </footer>
 );

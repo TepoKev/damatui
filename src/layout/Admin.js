@@ -56,6 +56,7 @@ export default function Admin() {
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    textAlign: 'center'
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
