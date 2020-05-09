@@ -34,8 +34,8 @@ export default function Admin() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <TopBar open={open} toggleDrawer={toggleDrawer} />
       <SideBar open={open} toggleDrawer={toggleDrawer} />
+      <TopBar open={open} toggleDrawer={toggleDrawer} />
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,

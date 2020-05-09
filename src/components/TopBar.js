@@ -13,6 +13,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import PersonIcon from '@material-ui/icons/Person';
+import BuildIcon from '@material-ui/icons/Build';
+import SecurityIcon from '@material-ui/icons/Security';
+import ReceiptIcon from '@material-ui/icons/Receipt';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const TopBar = ({open, toggleDrawer}) => {
     console.log("Tobar "+open);
@@ -54,8 +59,10 @@ const TopBar = ({open, toggleDrawer}) => {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={handleMenuClose}><PersonIcon/>Perfil</MenuItem>
+            <MenuItem onClick={handleMenuClose}><BuildIcon />Ajustes y <SecurityIcon /> Seguridad</MenuItem>
+            <MenuItem onClick={handleMenuClose}><ReceiptIcon />Registro de Actividad</MenuItem>
+            <MenuItem onClick={handleMenuClose}><ExitToAppIcon />Cerrar Sesión</MenuItem>
         </Menu>
     );
 
