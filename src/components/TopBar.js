@@ -19,7 +19,7 @@ import SecurityIcon from '@material-ui/icons/Security';
 import ReceiptIcon from '@material-ui/icons/Receipt';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-const TopBar = ({open, toggleDrawer}) => {
+const TopBar = ({open, toggleDrawer, openNot, toggleNot}) => {
     console.log("Tobar "+open);
     const classes = useStyles();
     /**
@@ -135,7 +135,7 @@ const TopBar = ({open, toggleDrawer}) => {
                                 <MailIcon />
                             </Badge>
                         </IconButton>
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
+                        <IconButton aria-label="show 17 new notifications" color="inherit" onClick={toggleNot}>
                             <Badge badgeContent={17} color="secondary">
                                 <NotificationsIcon />
                             </Badge>
