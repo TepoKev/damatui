@@ -1,31 +1,32 @@
-import React from 'react';
-import clsx from 'clsx';
-import useStyles from '../layout/Styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import PersonIcon from '@material-ui/icons/Person';
-import BuildIcon from '@material-ui/icons/Build';
-import SecurityIcon from '@material-ui/icons/Security';
-import ReceiptIcon from '@material-ui/icons/Receipt';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import React from "react";
+import clsx from "clsx";
+import useStyles from "../layout/Styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import Badge from "@material-ui/core/Badge";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import PersonIcon from "@material-ui/icons/Person";
+import BuildIcon from "@material-ui/icons/Build";
+import SecurityIcon from "@material-ui/icons/Security";
+import ReceiptIcon from "@material-ui/icons/Receipt";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import Notifications from "./Notifications";
+import { Link } from "react-router-dom";
 
-const TopBar = ({open, toggleDrawer, openNot, toggleNot}) => {
-    console.log("Tobar "+open);
+const TopBar = ({ open, toggleDrawer }) => {
     const classes = useStyles();
     /**
      * si no se quiere cargar el sidebar de entrada, solo poner false al useState
      */
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorElNoti, setAnchorElNoti] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
@@ -34,7 +35,12 @@ const TopBar = ({open, toggleDrawer, openNot, toggleNot}) => {
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
-
+    const handleClickNotifi = (event) => {
+        setAnchorElNoti(event.currentTarget);
+    };
+    const handleCloseNotifi = () => {
+        setAnchorElNoti(null);
+    };
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
@@ -48,50 +54,72 @@ const TopBar = ({open, toggleDrawer, openNot, toggleNot}) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
 
-    const menuId = 'primary-search-account-menu';
+    const menuId = "primary-search-account-menu";
     const renderMenu = (
         <Menu
             anchorEl={anchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
             id={menuId}
             keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            transformOrigin={{ vertical: "top", horizontal: "right" }}
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}><PersonIcon/>Perfil</MenuItem>
-            <MenuItem onClick={handleMenuClose}><BuildIcon />Ajustes y <SecurityIcon /> Seguridad</MenuItem>
-            <MenuItem onClick={handleMenuClose}><ReceiptIcon />Registro de Actividad</MenuItem>
-            <MenuItem onClick={handleMenuClose}><ExitToAppIcon />Cerrar Sesión</MenuItem>
+            <Link
+                to={"/admin/perfil"}
+                onClick={handleMenuClose}
+                style={{ textDecoration: "none", color: "black" }}
+            >
+                <MenuItem>
+                    <PersonIcon />
+                    Perfil
+            </MenuItem>
+            </Link>
+            <Link
+                to={"/admin/ajustes"}
+                onClick={handleMenuClose}
+                style={{ textDecoration: "none", color: "black" }}
+            >
+                <MenuItem>
+                    <BuildIcon />
+                    Ajustes y <SecurityIcon /> Seguridad
+                </MenuItem>
+            </Link>
+            <Link
+                to={"/admin/bitacora"}
+                onClick={handleMenuClose}
+                style={{ textDecoration: "none", color: "black" }}
+            >
+                <MenuItem>
+                    <ReceiptIcon />
+                    Registro de Actividad
+                </MenuItem>
+            </Link>
+            <MenuItem onClick={handleMenuClose}>
+                <ExitToAppIcon />
+                Cerrar Sesión
+            </MenuItem>
         </Menu>
     );
 
-    const mobileMenuId = 'primary-search-account-menu-mobile';
+    const mobileMenuId = "primary-search-account-menu-mobile";
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
             id={mobileMenuId}
             keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            transformOrigin={{ vertical: "top", horizontal: "right" }}
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
-                <IconButton aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                        <MailIcon />
-                    </Badge>
-                </IconButton>
-                <p>Messages</p>
-            </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={handleClickNotifi}>
                 <IconButton aria-label="show 11 new notifications" color="inherit">
                     <Badge badgeContent={11} color="secondary">
                         <NotificationsIcon />
                     </Badge>
                 </IconButton>
-                <p>Notifications</p>
+                <p>Notificaciones</p>
             </MenuItem>
             <MenuItem onClick={handleProfileMenuOpen}>
                 <IconButton
@@ -102,7 +130,7 @@ const TopBar = ({open, toggleDrawer, openNot, toggleNot}) => {
                 >
                     <AccountCircle />
                 </IconButton>
-                <p>Profile</p>
+                <p>Perfil</p>
             </MenuItem>
         </Menu>
     );
@@ -125,17 +153,21 @@ const TopBar = ({open, toggleDrawer, openNot, toggleNot}) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Damatui
-                </Typography>
+                    
+                        <Link
+                            to="/admin/dashboard"
+                            style={{ textDecoration: "none", color:"white" }}
+                            onClick={toggleDrawer}
+                        >
+                            <Typography variant="h6" noWrap>Damatui</Typography>
+                        </Link>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <MailIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton aria-label="show 17 new notifications" color="inherit" onClick={toggleNot}>
+                        <IconButton
+                            aria-label="show 17 new notifications"
+                            color="inherit"
+                            onClick={handleClickNotifi}
+                        >
                             <Badge badgeContent={17} color="secondary">
                                 <NotificationsIcon />
                             </Badge>
@@ -164,10 +196,14 @@ const TopBar = ({open, toggleDrawer, openNot, toggleNot}) => {
                     </div>
                 </Toolbar>
             </AppBar>
+            <Notifications
+                anchorElNoti={anchorElNoti}
+                handleCloseNotifi={handleCloseNotifi}
+            />
             {renderMobileMenu}
             {renderMenu}
         </>
     );
-}
+};
 
 export default TopBar;

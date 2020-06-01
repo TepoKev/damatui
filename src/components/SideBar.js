@@ -1,5 +1,4 @@
 import React from "react";
-import clsx from "clsx";
 import useStyles from "../layout/Styles";
 import { useTheme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
@@ -69,48 +68,42 @@ const SideBar = ({ open, toggleDrawer }) => {
         );
     });
     return (
-        <div
-            className={clsx(classes.list)}
-            role="presentation"
-            onKeyDown={toggleDrawer}
+        <Drawer
+            className={classes.drawer}
+            classes={{
+                paper: classes.drawerPaper,
+            }}
+            anchor="left"
+            open={open}
+            onClose={toggleDrawer}
         >
-            <Drawer
-                className={classes.drawer}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-                anchor="left"
-                open={open}
-                onClose={toggleDrawer}
-            >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={toggleDrawer}>
-                        {theme.direction === "ltr" ? (
-                            <ChevronLeftIcon />
-                        ) : (
-                                <ChevronRightIcon />
-                            )}
-                    </IconButton>
-                </div>
-                <Divider />
-                <List>
-                    <Link
-                        to="/admin/dashboard"
-                        style={{ textDecoration: "none", color: "black" }}
-                        onClick={toggleDrawer}
-                    >
-                        <ListItem button>
-                            <ListItemIcon>
-                                <HomeIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Dashboard" />
-                        </ListItem>
-                    </Link>
-                </List>
-                <Divider />
-                <List>{listLink}</List>
-            </Drawer>
-        </div>
+            <div className={classes.drawerHeader}>
+                <IconButton onClick={toggleDrawer}>
+                    {theme.direction === "ltr" ? (
+                        <ChevronLeftIcon />
+                    ) : (
+                            <ChevronRightIcon />
+                        )}
+                </IconButton>
+            </div>
+            <Divider />
+            <List>
+                <Link
+                    to="/admin/dashboard"
+                    style={{ textDecoration: "none", color: "black" }}
+                    onClick={toggleDrawer}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Dashboard" />
+                    </ListItem>
+                </Link>
+            </List>
+            <Divider />
+            <List>{listLink}</List>
+        </Drawer>
     );
 };
 

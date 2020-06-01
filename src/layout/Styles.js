@@ -80,15 +80,11 @@ const useStyles = makeStyles((theme) => ({
     },
     headerfooter: {
         display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "center"
     },
     footer: {
         position: "absolute",
-        bottom: "10px",
-    },
-    list: {
-        width: 250,
+        bottom: "10px"
     },
     fullList: {
         width: 'auto',
