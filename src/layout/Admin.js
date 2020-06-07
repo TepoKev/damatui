@@ -4,16 +4,14 @@ import Dashboard from "../views/Dashboard";
 import Perfil from "../views/perfil/Perfil";
 import Ajustes from "../views/ajustes/Ajustes";
 import Bitacora from "../views/bitacora/Bitacora";
-import clsx from "clsx";
+import Box from "@material-ui/core/Box";
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import SideBar from "../components/SideBar";
 import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
 import routes from "../routes/routes";
 import Container from "@material-ui/core/Container";
-
-const drawerWidth = 240;
+import Grid from '@material-ui/core/Grid';
 
 export default function Admin() {
   const classes = useStyles();
@@ -41,26 +39,30 @@ export default function Admin() {
   });
   return (
     <div className={classes.root}>
-      <CssBaseline />
       <SideBar open={open} toggleDrawer={toggleDrawer} />
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <TopBar open={open} toggleDrawer={toggleDrawer} openNot={openNot} toggleNot={toggleNot}/>
+      <TopBar
+        open={open}
+        toggleDrawer={toggleDrawer}
+        openNot={openNot}
+        toggleNot={toggleNot}
+      />
+      <main className={classes.content}>
         <div className={classes.drawerHeader} />
-        {/* Aqui va el switch con las rutas y aca se colocaran las paginas (Aclople de componentes al layout)*/}
-        <Container>
-          <Switch>
-            <Route path="/admin/dashboard" component={Dashboard} />
-            <Route path="/admin/perfil" component={Perfil} />
-            <Route path="/admin/ajustes" component={Ajustes} />
-            <Route path="/admin/bitacora" component={Bitacora} />
-            {arrayRouter}
-          </Switch>
+        <Container maxWidth="lg" className={classes.container}>
+          <Grid className={classes.gridContainer}>
+            {/* Aqui va el switch con las rutas y aca se colocaran las paginas (Aclople de componentes al layout)*/}
+            <Switch>
+              <Route path="/admin/dashboard" component={Dashboard} />
+              <Route path="/admin/perfil" component={Perfil} />
+              <Route path="/admin/ajustes" component={Ajustes} />
+              <Route path="/admin/bitacora" component={Bitacora} />
+              {arrayRouter}
+            </Switch>
+          </Grid>
+          <Box pt={4}>
+            <Footer />
+          </Box>
         </Container>
-        <Footer />
       </main>
     </div>
   );
@@ -68,35 +70,7 @@ export default function Admin() {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    textAlign: "center",
-  },
-  appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: "none",
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
+    display: "flex"
   },
   drawerHeader: {
     display: "flex",
@@ -108,17 +82,14 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    })
+    height: '100vh',
+    overflow: 'auto',
   },
-  contentShift: {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
+  container: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4)
   },
+  gridContainer : {
+    textAlign : 'center'
+  }
 }));

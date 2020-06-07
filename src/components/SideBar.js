@@ -1,7 +1,6 @@
 import React from "react";
-import useStyles from "../layout/Styles";
 import { useTheme } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/core/styles";
+import { useStylesSideBar, useStylesExp } from "../layout/Styles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
@@ -21,8 +20,8 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const SideBar = ({ open, toggleDrawer }) => {
-    const [expanded, setExpanded] = React.useState(false);
-    const classes = useStyles();
+    const [expanded, setExpanded] = React.useState(true);
+    const classes = useStylesSideBar();
     const classesExp = useStylesExp();
     const theme = useTheme();
     const handleChange = (panel) => (event, isExpanded) => {
@@ -106,20 +105,5 @@ const SideBar = ({ open, toggleDrawer }) => {
         </Drawer>
     );
 };
-
-const useStylesExp = makeStyles((theme) => ({
-    root: {
-        width: "100%",
-    },
-    heading: {
-        fontSize: theme.typography.pxToRem(15),
-        flexBasis: "33.33%",
-        flexShrink: 0,
-    },
-    secondaryHeading: {
-        fontSize: theme.typography.pxToRem(15),
-        color: theme.palette.text.secondary,
-    },
-}));
 
 export default SideBar;

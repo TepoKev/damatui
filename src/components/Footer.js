@@ -1,15 +1,17 @@
 import React from 'react';
-import makeStyles from '../layout/Styles';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 const Footer = () => {
-    const classes = makeStyles();
     return (
-        <div className={classes.headerfooter}>
-            <footer className={classes.footer}>
-                <span >Copyright &copy; Damatui 2020</span>
-            </footer>
-        </div>
-
+        <Typography variant="body2" color="textSecondary" align="center">
+            {'Copyright © '}
+            <Link color="inherit" href="https://github.com/TepoKev">
+                Damatui
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
     );
 }
 

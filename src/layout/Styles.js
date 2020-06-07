@@ -2,10 +2,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: "flex",
-    },
+const useStylesTopBar = makeStyles((theme) => ({
+    //Start TopBar Styles
     appBar: {
         transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.sharp,
@@ -26,6 +24,24 @@ const useStyles = makeStyles((theme) => ({
     hide: {
         display: "none",
     },
+    grow: {
+        flexGrow: 1,
+    },
+    sectionDesktop: {
+        display: "none",
+        [theme.breakpoints.up("md")]: {
+            display: "flex",
+        },
+    },
+    sectionMobile: {
+        display: "flex",
+        [theme.breakpoints.up("md")]: {
+            display: "none",
+        },
+    },
+    //End TopBar Styles
+
+    //Start SideBar Styles
     drawer: {
         width: drawerWidth,
         flexShrink: 0,
@@ -41,54 +57,44 @@ const useStyles = makeStyles((theme) => ({
         ...theme.mixins.toolbar,
         justifyContent: "flex-end",
     },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-        transition: theme.transitions.create("margin", {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        marginLeft: -drawerWidth,
-    },
-    contentShift: {
-        transition: theme.transitions.create("margin", {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
-    },
-    grow: {
-        flexGrow: 1,
-    },
-    title: {
-        display: "none",
-        [theme.breakpoints.up("sm")]: {
-            display: "block",
-        },
-    },
-    sectionDesktop: {
-        display: "none",
-        [theme.breakpoints.up("md")]: {
-            display: "flex",
-        },
-    },
-    sectionMobile: {
-        display: "flex",
-        [theme.breakpoints.up("md")]: {
-            display: "none",
-        },
-    },
-    headerfooter: {
-        display: "flex",
-        justifyContent: "center"
-    },
-    footer: {
-        position: "absolute",
-        bottom: "10px"
-    },
-    fullList: {
-        width: 'auto',
-    }
+    //End SideBar Styles
 }));
 
-export default useStyles;
+const useStylesSideBar = makeStyles((theme) => ({
+    drawer: {
+        width: drawerWidth,
+        flexShrink: 0,
+    },
+    drawerPaper: {
+        width: drawerWidth,
+    },
+    drawerHeader: {
+        display: "flex",
+        alignItems: "center",
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+        justifyContent: "flex-end",
+    },
+}));
+
+const useStylesExp = makeStyles((theme) => ({
+    root: {
+        width: "100%",
+    },
+    heading: {
+        fontSize: theme.typography.pxToRem(15),
+        flexBasis: "33.33%",
+        flexShrink: 0,
+    },
+    secondaryHeading: {
+        fontSize: theme.typography.pxToRem(15),
+        color: theme.palette.text.secondary,
+    },
+}));
+
+export {
+    useStylesTopBar,
+    useStylesSideBar,
+    useStylesExp
+};

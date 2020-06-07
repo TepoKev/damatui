@@ -1,6 +1,5 @@
 import React from "react";
 import clsx from "clsx";
-import useStyles from "../layout/Styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -19,9 +18,10 @@ import ReceiptIcon from "@material-ui/icons/Receipt";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Notifications from "./Notifications";
 import { Link } from "react-router-dom";
+import { useStylesTopBar } from "../layout/Styles";
 
 const TopBar = ({ open, toggleDrawer }) => {
-    const classes = useStyles();
+    const classes = useStylesTopBar();
     /**
      * si no se quiere cargar el sidebar de entrada, solo poner false al useState
      */
@@ -53,7 +53,6 @@ const TopBar = ({ open, toggleDrawer }) => {
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
-
     const menuId = "primary-search-account-menu";
     const renderMenu = (
         <Menu
@@ -73,7 +72,7 @@ const TopBar = ({ open, toggleDrawer }) => {
                 <MenuItem>
                     <PersonIcon />
                     Perfil
-            </MenuItem>
+                </MenuItem>
             </Link>
             <Link
                 to={"/admin/ajustes"}
@@ -95,10 +94,16 @@ const TopBar = ({ open, toggleDrawer }) => {
                     Registro de Actividad
                 </MenuItem>
             </Link>
-            <MenuItem onClick={handleMenuClose}>
-                <ExitToAppIcon />
-                Cerrar Sesión
-            </MenuItem>
+            <Link
+                to={"/"}
+                onClick={handleMenuClose}
+                style={{ textDecoration: "none", color: "black" }}
+            >
+                <MenuItem onClick={handleMenuClose}>
+                    <ExitToAppIcon />
+                    Cerrar Sesión
+                </MenuItem>
+            </Link>
         </Menu>
     );
 
@@ -111,27 +116,90 @@ const TopBar = ({ open, toggleDrawer }) => {
             keepMounted
             transformOrigin={{ vertical: "top", horizontal: "right" }}
             open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
+            onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleClickNotifi}>
-                <IconButton aria-label="show 11 new notifications" color="inherit">
-                    <Badge badgeContent={11} color="secondary">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
-                <p>Notificaciones</p>
-            </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Perfil</p>
-            </MenuItem>
+            <Link
+                to={"/"}
+                onClick={handleMenuClose}
+                style={{ textDecoration: "none", color: "black" }}
+            >
+                <MenuItem>
+                    <IconButton aria-label="show 11 new notifications" color="inherit">
+                        <Badge badgeContent={11} color="secondary">
+                            <NotificationsIcon />
+                        </Badge>
+                    </IconButton>
+                    <p>Notificaciones</p>
+                </MenuItem>
+            </Link>
+            <Link
+                to={"/admin/perfil"}
+                onClick={handleMenuClose}
+                style={{ textDecoration: "none", color: "black" }}
+            >
+                <MenuItem onClick={handleMenuClose}>
+                    <IconButton
+                        aria-label="account of current user"
+                        aria-controls="primary-search-account-menu"
+                        aria-haspopup="true"
+                        color="inherit"
+                    >
+                        <AccountCircle />
+                    </IconButton>
+                    <p>Perfil</p>
+                </MenuItem>
+            </Link>
+            <Link
+                to={"/admin/ajustes"}
+                onClick={handleMenuClose}
+                style={{ textDecoration: "none", color: "black" }}
+            >
+                <MenuItem onClick={handleMenuClose}>
+                    <IconButton
+                        aria-label="account of current user"
+                        aria-controls="primary-search-account-menu"
+                        aria-haspopup="true"
+                        color="inherit"
+                    >
+                        <BuildIcon />
+                    </IconButton>
+                    <p>Ajustes y <SecurityIcon /> Seguridad</p>
+                </MenuItem>
+            </Link>
+            <Link
+                to={"/admin/bitacora"}
+                onClick={handleMenuClose}
+                style={{ textDecoration: "none", color: "black" }}
+            >
+                <MenuItem onClick={handleMenuClose}>
+                    <IconButton
+                        aria-label="account of current user"
+                        aria-controls="primary-search-account-menu"
+                        aria-haspopup="true"
+                        color="inherit"
+                    >
+                        <ReceiptIcon />
+                    </IconButton>
+                    <p>Registro de Actividad</p>
+                </MenuItem>
+            </Link>
+            <Link
+                to={"/"}
+                onClick={handleMenuClose}
+                style={{ textDecoration: "none", color: "black" }}
+            >
+                <MenuItem onClick={handleMenuClose}>
+                    <IconButton
+                        aria-label="account of current user"
+                        aria-controls="primary-search-account-menu"
+                        aria-haspopup="true"
+                        color="inherit"
+                    >
+                        <ExitToAppIcon />
+                    </IconButton>
+                    Cerrar Sesión
+                </MenuItem>
+            </Link>
         </Menu>
     );
 
@@ -153,14 +221,13 @@ const TopBar = ({ open, toggleDrawer }) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    
-                        <Link
-                            to="/admin/dashboard"
-                            style={{ textDecoration: "none", color:"white" }}
-                            onClick={toggleDrawer}
-                        >
-                            <Typography variant="h6" noWrap>Damatui</Typography>
-                        </Link>
+
+                    <Link
+                        to="/admin/dashboard"
+                        style={{ textDecoration: "none", color: "white" }}
+                    >
+                        <Typography variant="h6" noWrap>Damatui</Typography>
+                    </Link>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         <IconButton
